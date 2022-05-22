@@ -69,7 +69,7 @@ extern "C" {
         }
         return nullptr;
     }
-    __declspec(dllexport) void callback4m68kfc(unsigned int new_fc) { fc4mac = new_fc; }
+    __declspec(dllexport) void callback4m68kfc(unsigned int new_fc) { fc4mac = new_fc; if (callback4m68kfc4ext != nullptr) { callback4m68kfc4ext(new_fc); } }
     __declspec(dllexport) UINT32 memaccess4emu(int prm_0, int prm_1, int prm_2) {
         UINT32 memoryaddr4access = readmem32(((prm_0 >> 12) * 4) + baseaddr4mmu[((fc4mac & 4) ? 1 : 0)]);
         if (((mmusetting & 1) && ((fc4mac & 4) == 0)) || ((mmusetting&256) && (mmusetting & 1))) {
